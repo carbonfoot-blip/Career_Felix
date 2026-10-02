@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lettre de Présentation - Félix-Antoine Legault - Bell Canada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-teal: #2c6e82;
+      --primary-teal-dark: #1e5262;
+      --slate-dark: #1f2d3d;
+      --slate-text: #2d3748;
+      --slate-muted: #5a6675;
+      --border-color: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #ffffff;
+      color: var(--slate-text);
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+    .letter-sheet {
+      background: #ffffff;
+      width: 215.9mm;
+      height: 279.4mm;
+      max-height: 279.4mm;
+      overflow: hidden;
+      padding: 18mm 20mm 16mm 20mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    /* Header */
+    .header {
+      border-bottom: 2px solid var(--primary-teal);
+      padding-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .candidate-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary-teal);
+      line-height: 1.1;
+    }
+    .candidate-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #334155;
+      margin-top: 3px;
+    }
+    .contact-info {
+      text-align: right;
+      font-size: 10.5px;
+      color: #4b5563;
+      line-height: 1.45;
+    }
+    .contact-info a { color: var(--primary-teal); text-decoration: none; font-weight: 600; }
+    /* Recipient & Meta */
+    .meta-section {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #334155;
+      line-height: 1.4;
+    }
+    .recipient strong {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .subject-line {
+      margin-top: 12px;
+      padding: 8px 12px;
+      background: #f1f6f8;
+      border-left: 3px solid var(--primary-teal);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    /* Letter Body */
+    .letter-body {
+      margin-top: 12px;
+      font-size: 10.8px;
+      line-height: 1.5;
+      color: #2b333e;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      text-align: justify;
+    }
+    .letter-body p { margin: 0; }
+    .highlight-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 2px 0;
+      font-size: 10.2px;
+    }
+    .highlight-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .highlight-title {
+      font-weight: 700;
+      color: var(--primary-teal);
+      font-size: 10.5px;
+    }
+    .signature-block {
+      margin-top: 12px;
+      font-size: 11px;
+    }
+    .signature-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 12.5px;
+      margin-top: 14px;
+    }
+    @page { size: letter portrait; margin: 0; }
+    @media print {
+      body { background: transparent !important; padding: 0 !important; }
+      .letter-sheet { box-shadow: none !important; width: 215.9mm !important; height: 279.4mm !important; max-height: 279.4mm !important; page-break-after: avoid !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="letter-sheet">
+    <div>
+      <!-- Header -->
+      <div class="header">
+        <div>
+          <div class="candidate-name">Félix-Antoine Legault</div>
+          <div class="candidate-title">Gestionnaire principal – Architecture applicative & Livraison de solutions</div>
+        </div>
+        <div class="contact-info">
+          (514) 709-1313 &nbsp;|&nbsp; felixantoinelegault@gmail.com<br>
+          Chambly, Québec &nbsp;|&nbsp; <a href="https://www.linkedin.com/in/f%C3%A9lix-antoine-legault-37ab0734/" target="_blank">Profil LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- Recipient -->
+      <div class="meta-section">
+        <div class="recipient">
+          <strong>Comité de sélection & Leadership du Centre d'Excellence ServiceNow</strong><br>
+          Direction de l'Expérience Client & Technologie<br>
+          Bell Canada<br>
+          Montréal, Québec
+        </div>
+        <div>
+          Montréal, le 2 octobre 2026
+        </div>
+      </div>
+
+      <!-- Subject -->
+      <div class="subject-line">
+        Objet : Candidature au poste de Gestionnaire principal, livraison et transformation de la plateforme ServiceNow (Req Id: 432892)
+      </div>
+
+      <!-- Content -->
+      <div class="letter-body">
+        <p>
+          Madame, Monsieur,
+        </p>
+        <p>
+          Actuellement <strong>Gestionnaire principal au sein des Services technologiques (TS) chez Bell Canada</strong> et cumulant <strong>15 années d'expérience au sein de l'organisation</strong> (depuis 2011, et 18+ années au total en ingénierie et livraison de solutions), c'est avec un très grand enthousiasme que je vous soumets ma candidature pour diriger l'évolution stratégique et la livraison de la plateforme ServiceNow au sein de l'équipe Expérience client.
+        </p>
+        <p>
+          Tout au long de mon parcours chez Bell, j'ai eu comme client direct et partenaire continu l'unité d'affaires <strong>Bell Marchés Affaires (BBM)</strong>. Depuis septembre 2017, je pilote avec succès une équipe multidisciplinaire de <strong>~20 professionnels</strong> (architectes, gestionnaires de produits, développeurs, Scrum Masters, analystes et partenaires d'intégration). Mon quotidien consiste précisément à concrétiser les feuilles de route technologiques répondant aux impératifs d'affaires de BBM, à aligner les investissements de plateformes (budgets OPEX/CAPEX), et à instaurer des standards de gouvernance et de qualité éprouvés dans des environnements hautement critiques.
+        </p>
+        <p>
+          Ce rôle au sein du <strong>Centre d'Excellence ServiceNow</strong>, orienté vers la réussite de nos clients d'affaires, correspond en tous points à mes compétences et à mon parcours :
+        </p>
+
+        <div class="highlight-card">
+          <div class="highlight-item">
+            <span class="highlight-title">• Partenariat historique avec BBM & Télécoms</span>
+            <span>Connaissance approfondie des processus, des équipes et des impératifs opérationnels de Bell Marchés Affaires (BBM) et des services gérés.</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-title">• Transformation ITSM & Systèmes d'entreprise</span>
+            <span>Solide maîtrise de la gestion des services TI (ITSM, ITIL, Maximo, ICD), des architectures complexes et de la résilience 24/7 chez Bell.</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-title">• Leadership mobilisateur & Parties prenantes</span>
+            <span>Habitude constante de fédérer des équipes vers l'excellence et de conseiller les comités exécutifs (analyses, risques, investissements).</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-title">• Accélération par l'IA & l'Automatisation</span>
+            <span>Pionnier dans l'adoption d'outils d'IA générative et d'automatisation des flux (AI Agents, accélération logicielle) pour maximiser l'efficience opérationnelle.</span>
+          </div>
+        </div>
+
+        <p>
+          Ingénieur diplômé de l'ÉTS en génie de la production automatisée (enrichi d'une solide formation préalable en génie logiciel et d'un DEC en informatique), j'apporte un équilibre unique entre rigueur technique, profondeur analytique et leadership stratégique. Mon ancrage de 15 ans au sein de TS et ma relation de confiance établie avec les leaders de <strong>Bell Marchés Affaires (BBM)</strong> me permettront d'être immédiatement opérationnel et de maximiser la valeur tirée de nos investissements ServiceNow.
+        </p>
+        <p>
+          Je serais honoré d'échanger avec vous afin d'approfondir la manière dont mon expérience et mon leadership pourront propulser les objectifs stratégiques du Centre d'Excellence ServiceNow et promouvoir une expérience client d'exception.
+        </p>
+        <p>
+          Je vous remercie sincèrement de l'attention portée à ma candidature et vous prie d'agréer mes salutations distinguées.
+        </p>
+      </div>
+    </div>
+
+    <!-- Signature -->
+    <div class="signature-block">
+      <div class="signature-name">Félix-Antoine Legault, B. Ing.</div>
+      <div style="font-size:10.5px; color:#64748b; margin-top:2px;">Gestionnaire principal, Bell Canada</div>
+    </div>
+  </div>
+</body>
+</html>

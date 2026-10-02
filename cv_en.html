@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Félix-Antoine Legault - Resume (English)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-teal: #2c6e82;
+      --primary-teal-dark: #1e5262;
+      --primary-teal-light: #eaf2f5;
+      --slate-text: #2f3844;
+      --slate-muted: #5a6675;
+      --border-light: #e2e8f0;
+      --timeline-line: #cfd8e1;
+      --bubble-dark: #2a343d;
+      --bubble-teal: #2c6e82;
+      --bubble-muted: #6b93a2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #ffffff;
+      color: var(--slate-text);
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+    .cv-sheet {
+      background: #ffffff;
+      width: 215.9mm;
+      height: 279.4mm;
+      max-height: 279.4mm;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 74mm 1fr;
+    }
+    .sidebar {
+      background: #ffffff;
+      border-right: 1px solid #eef2f6;
+      padding: 14mm 6mm 10mm 9mm;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .name-block h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary-teal);
+      line-height: 1.08;
+      letter-spacing: -0.4px;
+    }
+    .name-block .job-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #111827;
+      margin-top: 6px;
+      line-height: 1.25;
+    }
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 11px;
+      color: #374151;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact-icon {
+      width: 19px;
+      height: 19px;
+      border-radius: 4px;
+      background: var(--primary-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: white;
+    }
+    .contact-icon svg { width: 10px; height: 10px; fill: currentColor; }
+    .contact-item a { color: inherit; text-decoration: none; font-weight: 500; }
+    .summary-text {
+      font-size: 10.5px;
+      line-height: 1.42;
+      color: #374151;
+      text-align: justify;
+      hyphens: auto;
+    }
+    .deco-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 1px 0;
+      color: var(--primary-teal);
+      opacity: 0.85;
+    }
+    .deco-divider span { height: 1px; flex: 1; background: #cbd5e1; }
+    .sidebar-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+    .edu-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .edu-item { font-size: 10.5px; line-height: 1.3; }
+    .edu-degree { font-weight: 700; color: #1e293b; display: block; }
+    .edu-school { color: var(--slate-muted); display: block; font-size: 10px; }
+    .tech-list { list-style: none; display: flex; flex-direction: column; gap: 3px; font-size: 10.5px; color: #374151; }
+    .tech-list li { position: relative; padding-left: 11px; line-height: 1.3; }
+    .tech-list li::before {
+      content: "•";
+      color: var(--primary-teal);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      font-size: 12px;
+    }
+    .lang-text { font-size: 10.5px; color: #374151; line-height: 1.35; }
+    .main-content {
+      padding: 14mm 8mm 10mm 6mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .main-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+    .timeline {
+      position: relative;
+      border-left: 1.5px solid var(--timeline-line);
+      margin-left: 12px;
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .timeline-item { position: relative; }
+    .timeline-marker {
+      position: absolute;
+      left: -24px;
+      top: 1px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--primary-teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 0 0 2px #ffffff;
+    }
+    .timeline-marker svg { width: 8px; height: 8px; fill: currentColor; }
+    .timeline-header { margin-bottom: 2px; }
+    .timeline-date-company { font-size: 12px; font-weight: 700; color: #0f172a; }
+    .timeline-company { color: var(--primary-teal); }
+    .timeline-role { font-size: 11.5px; font-weight: 600; color: #334155; margin-top: 1px; }
+    .timeline-bullets {
+      list-style: none;
+      font-size: 10px;
+      line-height: 1.35;
+      color: #374151;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5px;
+      margin-top: 3px;
+    }
+    .timeline-bullets li { position: relative; padding-left: 11px; text-align: justify; }
+    .timeline-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary-teal);
+      font-weight: bold;
+    }
+    .competencies-section {
+      margin-top: 8px;
+      padding-top: 7px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .competencies-grid {
+      display: grid;
+      grid-template-columns: 125px 1fr;
+      gap: 12px;
+      align-items: center;
+      margin-top: 4px;
+    }
+    .bubble-cluster { position: relative; width: 120px; height: 85px; }
+    .bubble {
+      border-radius: 50%;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+      padding: 4px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      line-height: 1.1;
+    }
+    .bubble-1 { width: 58px; height: 58px; background: var(--bubble-dark); font-size: 7.5px; top: 0px; left: 12px; z-index: 2; }
+    .bubble-2 { width: 56px; height: 56px; background: var(--bubble-teal); font-size: 7px; bottom: 0px; left: 42px; z-index: 3; }
+    .bubble-3 { width: 44px; height: 44px; background: var(--bubble-muted); font-size: 6.5px; top: 16px; right: 0px; z-index: 1; }
+    .competency-tags {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 14px;
+      row-gap: 4.5px;
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .tag-item { display: flex; align-items: center; gap: 5px; line-height: 1.2; }
+    .tag-item::before {
+      content: "";
+      width: 4.5px;
+      height: 4.5px;
+      border-radius: 50%;
+      background: var(--primary-teal);
+      flex-shrink: 0;
+    }
+    @page { size: letter portrait; margin: 0; }
+    @media print {
+      body { background: transparent !important; padding: 0 !important; }
+      .cv-sheet { box-shadow: none !important; width: 215.9mm !important; height: 279.4mm !important; max-height: 279.4mm !important; page-break-after: avoid !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cv-sheet">
+    <aside class="sidebar">
+      <div class="name-block">
+        <h1>Félix-Antoine<br>Legault</h1>
+        <div class="job-title">Senior Manager<br>Application Architecture & Enterprise Delivery</div>
+      </div>
+
+      <ul class="contact-list">
+        <li class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+          </div>
+          <span>(514) 709-1313</span>
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <a href="mailto:felixantoinelegault@gmail.com">felixantoinelegault@gmail.com</a>
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <span>Chambly, Quebec</span>
+        </li>
+        <li class="contact-item">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.62 1.62 0 1 0-.01-3.24 1.62 1.62 0 0 0 .01 3.24M7.86 18.5V9.75H5.07V18.5h2.79z"/></svg>
+          </div>
+          <a href="https://www.linkedin.com/in/f%C3%A9lix-antoine-legault-37ab0734/" target="_blank">LinkedIn Profile</a>
+        </li>
+      </ul>
+
+      <p class="summary-text">
+        Accomplished technology leader with 18+ years of experience in solution architecture, software engineering, and enterprise application delivery. Proven track record directing high-performing multidisciplinary Agile teams (~20 professionals) and steering complex digital programs from strategy through production. Expert in application modernization, financial governance, operational resilience, and leveraging generative AI to accelerate engineering productivity.
+      </p>
+
+      <div class="deco-divider">
+        <span></span>
+        <svg width="22" height="10" viewBox="0 0 24 12" fill="none"><circle cx="6" cy="6" r="2" fill="currentColor"/><polygon points="12,2 16,6 12,10 8,6" fill="currentColor"/><circle cx="18" cy="6" r="2" fill="currentColor"/></svg>
+        <span></span>
+      </div>
+
+      <div>
+        <div class="sidebar-heading">Education</div>
+        <ul class="edu-list">
+          <li class="edu-item">
+            <span class="edu-degree">• B. Eng. Automated Production Engineering</span>
+            <span class="edu-school">École de technologie supérieure (ÉTS) | 2006</span>
+          </li>
+          <li class="edu-item">
+            <span class="edu-degree">• Undergraduate Studies in Software Engineering</span>
+            <span class="edu-school">École de technologie supérieure (ÉTS)</span>
+          </li>
+          <li class="edu-item">
+            <span class="edu-degree">• Diploma | Computer Science</span>
+            <span class="edu-school">Cégep de Rosemont | 2002</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sidebar-heading">Skills & Technologies</div>
+        <ul class="tech-list">
+          <li>Solution Architecture & Cloud Strategy</li>
+          <li>Agile, SAFe, SDLC, CI/CD, DevSecOps</li>
+          <li>Jira, Confluence, ServiceNow, ITSM</li>
+          <li>Power BI, SQL, Java</li>
+          <li>IBM Maximo (v6, 7.2, 7.5, TSRM, TAMIT)</li>
+          <li>Generative AI (Copilot, Gemini, LLMs)</li>
+          <li>Automation & Engineering Productivity</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sidebar-heading">Languages</div>
+        <div class="lang-text">
+          <strong>French</strong> (Native)<br>
+          <strong>English</strong> (Full Professional Proficiency)
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div>
+        <div class="main-heading">Professional Experience</div>
+        
+        <div class="timeline">
+          <!-- Bell Manager -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+            </div>
+            <div class="timeline-header">
+              <div class="timeline-date-company">09/2017 – Present &nbsp;|&nbsp; <span class="timeline-company">Bell Canada (Technology Services - TS)</span></div>
+              <div class="timeline-role">Senior Manager, Application Architecture & Enterprise Delivery (Key BBM Partner)</div>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Primary technology partner for <strong>Bell Business Markets (BBM)</strong>: directing a multidisciplinary team of ~20 architects, developers, Scrum Masters, Product Owners, and QA specialists delivering critical platforms.</li>
+              <li>Orchestrate multiple Agile squads across the entire SDLC, tightly aligning architectural roadmaps, release governance, and 24/7 operations with corporate priorities.</li>
+              <li>Formulate architecture recommendations and evaluate solution feasibility, scalability, financial cost-benefit, and governance standards.</li>
+              <li>Manage multimillion-dollar OPEX/CAPEX operating budgets, workforce allocation, and strategic delivery commitments.</li>
+              <li>Spearhead the resolution of critical production incidents and improve system reliability and operational resilience.</li>
+              <li>Established cross-functional collaboration frameworks that reduced dependencies, eliminated rework, and accelerated time-to-market.</li>
+              <li>Pioneered the adoption of generative AI tooling and CI/CD automation to increase developer velocity and software quality.</li>
+            </ul>
+          </div>
+
+          <!-- Bell Senior BA -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+            </div>
+            <div class="timeline-header">
+              <div class="timeline-date-company">02/2014 – 09/2017 &nbsp;|&nbsp; <span class="timeline-company">Bell Canada</span></div>
+              <div class="timeline-role">Senior Business Analyst – Systems & Enterprise Architecture</div>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Led business analysis and systems elicitation for major enterprise-wide technology projects.</li>
+              <li>Served as principal reviewer for IBM Maximo solution design, software architecture, and functional validation.</li>
+              <li>Supported enterprise deployment and upgrades across Maximo versions 6, 7.2, and 7.5, including TSRM, CCMDB, and TAMIT.</li>
+            </ul>
+          </div>
+
+          <!-- Bell Systems BA -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+            </div>
+            <div class="timeline-header">
+              <div class="timeline-date-company">02/2011 – 02/2014 &nbsp;|&nbsp; <span class="timeline-company">Bell Canada</span></div>
+              <div class="timeline-role">Systems Business Analyst – Managed Services</div>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Gathered and formulated complex system requirements for extensive Managed Services client engagements.</li>
+              <li>Validated alignment between technical design and functional specifications; spearheaded system integration and operational readiness.</li>
+            </ul>
+          </div>
+
+          <!-- IBM -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+            </div>
+            <div class="timeline-header">
+              <div class="timeline-date-company">08/2007 – 02/2011 &nbsp;|&nbsp; <span class="timeline-company">IBM</span></div>
+              <div class="timeline-role">Software Developer / Solutions Engineer</div>
+            </div>
+            <ul class="timeline-bullets">
+              <li>Developed advanced automated inspection systems and computer vision algorithms for semiconductor manufacturing plants.</li>
+              <li>Managed end-to-end development cycle from requirements gathering and algorithmic design through industrial deployment.</li>
+              <li>Resolved high-complexity technical defects utilizing structured 8-step (8D) root cause analysis methodology.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Competencies -->
+      <div class="competencies-section">
+        <div class="main-heading" style="margin-bottom:4px;">Core Competencies & Expertise</div>
+        <div class="competencies-grid">
+          <div class="bubble-cluster">
+            <div class="bubble bubble-1">Empowering<br>Leadership</div>
+            <div class="bubble bubble-2">Enterprise<br>Architecture</div>
+            <div class="bubble bubble-3">GenAI & Tech</div>
+          </div>
+          <div class="competency-tags">
+            <div class="tag-item">Digital Transformation</div>
+            <div class="tag-item">Agile, Scrum & SAFe Delivery</div>
+            <div class="tag-item">Operational Governance & ITSM</div>
+            <div class="tag-item">Budgeting & Vendor Management</div>
+            <div class="tag-item">Generative AI Integration</div>
+            <div class="tag-item">Stakeholder Management</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

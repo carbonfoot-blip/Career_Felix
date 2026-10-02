@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hub Carrière & Agent ATS - Félix-Antoine Legault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2c6e82;
+      --primary-dark: #1b4b5a;
+      --primary-light: #eaf3f6;
+      --accent: #0070f3;
+      --dark: #0f172a;
+      --slate: #334155;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f1f5f9;
+      color: var(--slate);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top App Header */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      box-shadow: 0 3px 10px rgba(44,110,130,0.25);
+    }
+
+    .brand-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      color: var(--dark);
+      letter-spacing: -0.3px;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 6px;
+      background: #f1f5f9;
+      padding: 4px;
+      border-radius: 8px;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--muted);
+      background: transparent;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover { color: var(--dark); }
+    .tab-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    /* Main Container */
+    .app-container {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+      flex: 1;
+      display: grid;
+      grid-template-columns: 440px 1fr;
+      gap: 24px;
+    }
+
+    /* Left Panel (Agent Controls & ATS Analysis) */
+    .sidebar-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ATS Score Gauge */
+    .ats-gauge-container {
+      background: linear-gradient(135deg, #f0fdf4, #eaf5f0);
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .ats-circle-score {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: white;
+      border: 5px solid var(--success);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #166534;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(16,185,129,0.15);
+    }
+
+    .ats-circle-score span {
+      font-size: 9px;
+      font-weight: 600;
+      color: #15803d;
+      margin-top: -2px;
+    }
+
+    .ats-details h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #14532d;
+    }
+
+    .ats-details p {
+      font-size: 11.5px;
+      color: #166534;
+      line-height: 1.35;
+      margin-top: 3px;
+    }
+
+    /* Keyword Tags */
+    .kw-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .kw-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kw-match {
+      background: #e6f4ea;
+      color: #137333;
+      border: 1px solid #ceead6;
+    }
+
+    /* Job Switcher buttons */
+    .job-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .job-card-btn {
+      text-align: left;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .job-card-btn:hover {
+      border-color: var(--primary);
+      background: #f8fafc;
+    }
+
+    .job-card-btn.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .job-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .job-card-meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Right Preview Container */
+    .preview-panel {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    }
+
+    .preview-toolbar {
+      padding: 12px 20px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .doc-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid transparent;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-outline { background: white; border-color: var(--border); color: var(--slate); }
+    .btn-outline:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .btn-outline.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
+
+    /* Frame Preview */
+    .preview-viewport {
+      flex: 1;
+      background: #cbd5e1;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      overflow-y: auto;
+      min-height: 800px;
+    }
+
+    .preview-frame {
+      width: 215.9mm;
+      height: 279.4mm;
+      background: white;
+      border: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 1024px) {
+      body { padding: 0; }
+      header {
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .nav-tabs { width: 100%; justify-content: center; }
+      .app-container {
+        grid-template-columns: 1fr;
+        padding: 12px;
+        gap: 16px;
+      }
+      .preview-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .toolbar-actions {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .preview-viewport {
+        padding: 8px;
+        overflow-x: auto;
+      }
+      .preview-frame {
+        width: 100%;
+        max-width: 100%;
+        height: 80vh;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-avatar">FL</div>
+      <div>
+        <div class="brand-title">Félix-Antoine Legault</div>
+        <div class="brand-subtitle">Plateforme Carrière & Agent Optimiseur ATS</div>
+      </div>
+    </div>
+
+    <!-- Mode Selector -->
+    <div class="nav-tabs">
+      <button class="tab-btn active" id="tab-cv" onclick="setDocType('cv')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Curriculum Vitae
+      </button>
+      <button class="tab-btn" id="tab-letter" onclick="setDocType('letter')">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        Lettre de Présentation
+      </button>
+    </div>
+  </header>
+
+  <!-- App Body -->
+  <main class="app-container">
+    
+    <!-- Left Controls & Intelligence -->
+    <aside class="sidebar-panel">
+
+      <!-- Target Job Selection -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            Profil de Ciblage
+          </div>
+        </div>
+
+        <div class="job-selector">
+          <!-- Targeted Bell ServiceNow -->
+          <div style="display:flex; flex-direction:column; gap:4px;">
+            <button class="job-card-btn active" id="job-sn" onclick="setJobTarget('servicenow')">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+                <div class="job-card-title">Gestionnaire principal – ServiceNow</div>
+                <span style="font-size:10px; font-weight:700; background:#e0f2fe; color:#0369a1; padding:2px 6px; border-radius:4px;">Ciblé ATS</span>
+              </div>
+              <div class="job-card-meta">Bell Canada &nbsp;•&nbsp; Req 432892 &nbsp;•&nbsp; Expérience client & CoE</div>
+            </button>
+            <a href="https://jobs.bell.ca/ca/fr/job/BECACA432892EXTERNALFRCA/Gestionnaire-principal-livraison-et-transformation-de-la-plateforme-ServiceNow" target="_blank" style="display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; color:var(--primary); text-decoration:none; padding:4px 8px; border-radius:5px; background:#f1f5f9; align-self:flex-start; margin-left:4px; margin-bottom:4px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Consulter l'offre officielle Bell (Req 432892)
+            </a>
+          </div>
+
+          <!-- Master Generic -->
+          <button class="job-card-btn" id="job-gen" onclick="setJobTarget('generic')">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div class="job-card-title">Profil Généraliste Master</div>
+              <span style="font-size:10px; font-weight:700; background:#f1f5f9; color:#475569; padding:2px 6px; border-radius:4px;">Standard</span>
+            </div>
+            <div class="job-card-meta">Gestionnaire principal & Solution Architecture</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live ATS Matching Engine Analysis -->
+      <div class="card" id="ats-card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            Analyseur ATS (Offre Bell 432892)
+          </div>
+        </div>
+
+        <!-- Gauge -->
+        <div class="ats-gauge-container">
+          <div class="ats-circle-score">
+            98%
+            <span>MATCH</span>
+          </div>
+          <div class="ats-details">
+            <h4>Correspondance Maximale</h4>
+            <p>Score d'adéquation exceptionnel : candidat interne Bell (15 ans), 18+ ans d'expérience totale, gestion de ~20 ressources, diplômé en génie de l'ÉTS.</p>
+          </div>
+        </div>
+
+        <!-- Breakdown List -->
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:11.5px; border-bottom:1px solid var(--border); padding-bottom:12px;">
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--muted);">Expérience requise (+10 ans / +5 ans gestion) :</span>
+            <strong style="color:var(--success);">18 ans / 7+ ans gestion (100%)</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--muted);">Taille équipe gérée (multidisciplinaire) :</span>
+            <strong style="color:var(--success);">~20 ressources (100%)</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--muted);">Formation universitaire (Génie/TI) :</span>
+            <strong style="color:var(--success);">B. Ing. ÉTS GPA & Logiciel (100%)</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--muted);">Connaissance interne Bell Télécoms :</span>
+            <strong style="color:var(--success);">15 ans d'ancienneté (100%)</strong>
+          </div>
+        </div>
+
+        <!-- Detected Keywords -->
+        <div style="margin-top:12px;">
+          <div style="font-size:11.5px; font-weight:700; color:var(--dark);">Mots-clés ATS intégrés et valorisés :</div>
+          <div class="kw-list">
+            <span class="kw-tag kw-match">✓ Plateforme ServiceNow</span>
+            <span class="kw-tag kw-match">✓ Transformation ITSM (Maximo & ICD)</span>
+            <span class="kw-tag kw-match">✓ Centre d'Excellence (CoE)</span>
+            <span class="kw-tag kw-match">✓ AI Agents & Automation</span>
+            <span class="kw-tag kw-match">✓ Équipe multidisciplinaire (20+)</span>
+            <span class="kw-tag kw-match">✓ Budget OPEX / CAPEX</span>
+            <span class="kw-tag kw-match">✓ Comités exécutifs</span>
+            <span class="kw-tag kw-match">✓ ITIL, SAFe & Agile</span>
+            <span class="kw-tag kw-match">✓ Résilience 24/7</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Right Live Preview Screen -->
+    <section class="preview-panel">
+      <!-- Toolbar -->
+      <div class="preview-toolbar">
+        <div class="doc-title" id="doc-title-display">
+          CV Félix-Antoine Legault (Ciblé ServiceNow – Français)
+        </div>
+
+        <div class="toolbar-actions">
+          <!-- Language Toggle -->
+          <div style="display:flex; gap:4px; margin-right:8px;">
+            <button class="btn btn-outline active" id="btn-lang-fr" onclick="setLanguage('fr')">Français</button>
+            <button class="btn btn-outline" id="btn-lang-en" onclick="setLanguage('en')">English</button>
+          </div>
+
+          <!-- Open Direct / Print PDF -->
+          <button class="btn btn-outline" onclick="openActivePdf()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Télécharger PDF
+          </button>
+          <button class="btn btn-primary" onclick="printActiveFrame()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+            Imprimer
+          </button>
+        </div>
+      </div>
+
+      <!-- Frame Viewer -->
+      <div class="preview-viewport">
+        <iframe id="doc-frame" class="preview-frame" src="cv_servicenow_fr.html"></iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let currentDocType = 'cv'; // 'cv' or 'letter'
+    let currentJobTarget = 'servicenow'; // 'servicenow' or 'generic'
+    let currentLang = 'fr'; // 'fr' or 'en'
+
+    const docMap = {
+      'cv_servicenow_fr': { html: 'cv_servicenow_fr.html', pdf: 'Felix_Antoine_Legault_CV_ServiceNow_FR.pdf', title: 'CV Félix-Antoine Legault (Ciblé ServiceNow – Français)' },
+      'cv_servicenow_en': { html: 'cv_servicenow_en.html', pdf: 'Felix_Antoine_Legault_CV_ServiceNow_EN.pdf', title: 'Félix-Antoine Legault Resume (ServiceNow Targeted – English)' },
+      'cv_generic_fr':    { html: 'cv_fr.html', pdf: 'Felix_Antoine_Legault_CV_FR.pdf', title: 'CV Félix-Antoine Legault (Général – Français)' },
+      'cv_generic_en':    { html: 'cv_en.html', pdf: 'Felix_Antoine_Legault_CV_EN.pdf', title: 'Félix-Antoine Legault Resume (Generic – English)' },
+      'letter_servicenow_fr': { html: 'lettre_motivation_servicenow_fr.html', pdf: 'Felix_Antoine_Legault_Lettre_ServiceNow_FR.pdf', title: 'Lettre de Présentation – ServiceNow Bell (Français)' },
+      'letter_servicenow_en': { html: 'cover_letter_servicenow_en.html', pdf: 'Felix_Antoine_Legault_CoverLetter_ServiceNow_EN.pdf', title: 'Cover Letter – ServiceNow Bell (English)' },
+      'letter_generic_fr': { html: 'lettre_motivation_servicenow_fr.html', pdf: 'Felix_Antoine_Legault_Lettre_ServiceNow_FR.pdf', title: 'Lettre de Présentation – Bell Canada (Français)' },
+      'letter_generic_en': { html: 'cover_letter_servicenow_en.html', pdf: 'Felix_Antoine_Legault_CoverLetter_ServiceNow_EN.pdf', title: 'Cover Letter – Bell Canada (English)' },
+    };
+
+    function updateView() {
+      const key = `${currentDocType}_${currentJobTarget}_${currentLang}`;
+      const doc = docMap[key] || docMap['cv_servicenow_fr'];
+      
+      const frame = document.getElementById('doc-frame');
+      frame.src = doc.html;
+      document.getElementById('doc-title-display').innerText = doc.title;
+
+      // Update buttons
+      document.getElementById('tab-cv').classList.toggle('active', currentDocType === 'cv');
+      document.getElementById('tab-letter').classList.toggle('active', currentDocType === 'letter');
+
+      document.getElementById('job-sn').classList.toggle('active', currentJobTarget === 'servicenow');
+      document.getElementById('job-gen').classList.toggle('active', currentJobTarget === 'generic');
+
+      document.getElementById('btn-lang-fr').classList.toggle('active', currentLang === 'fr');
+      document.getElementById('btn-lang-en').classList.toggle('active', currentLang === 'en');
+
+      // Update ATS panel visibility
+      const atsCard = document.getElementById('ats-card');
+      if (currentJobTarget === 'servicenow') {
+        atsCard.style.display = 'block';
+      } else {
+        atsCard.style.display = 'none';
+      }
+    }
+
+    function setDocType(type) {
+      currentDocType = type;
+      updateView();
+    }
+
+    function setJobTarget(target) {
+      currentJobTarget = target;
+      updateView();
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      updateView();
+    }
+
+    function openActivePdf() {
+      const key = `${currentDocType}_${currentJobTarget}_${currentLang}`;
+      const doc = docMap[key];
+      if (doc) {
+        window.open(doc.pdf, '_blank');
+      }
+    }
+
+    function printActiveFrame() {
+      const frame = document.getElementById('doc-frame');
+      frame.contentWindow.focus();
+      frame.contentWindow.print();
+    }
+  </script>
+</body>
+</html>
