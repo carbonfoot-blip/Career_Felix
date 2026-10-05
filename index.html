@@ -328,6 +328,48 @@
     .btn-outline:hover { background: #f8fafc; border-color: #cbd5e1; }
     .btn-outline.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
 
+    .btn-edit {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+    .btn-edit:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+    }
+    .btn-edit.active {
+      background: #059669;
+      border-color: #047857;
+      color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+    .btn-save {
+      background: #10b981;
+      border-color: #059669;
+      color: #ffffff;
+    }
+    .btn-save:hover {
+      background: #059669;
+    }
+
+    .edit-banner {
+      background: linear-gradient(90deg, #ecfdf5, #f0fdf4);
+      border-bottom: 1px solid #a7f3d0;
+      padding: 9px 20px;
+      font-size: 12px;
+      color: #065f46;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Frame Preview */
     .preview-viewport {
       flex: 1;
@@ -521,26 +563,56 @@
 
         <div class="toolbar-actions">
           <!-- Language Toggle -->
-          <div style="display:flex; gap:4px; margin-right:8px;">
+          <div style="display:flex; gap:4px; margin-right:4px;">
             <button class="btn btn-outline active" id="btn-lang-fr" onclick="setLanguage('fr')">Français</button>
             <button class="btn btn-outline" id="btn-lang-en" onclick="setLanguage('en')">English</button>
           </div>
 
-          <!-- Open Direct / Print PDF -->
-          <button class="btn btn-outline" onclick="openActivePdf()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Télécharger PDF
+          <!-- Edit Mode Toggle -->
+          <button class="btn btn-edit" id="btn-toggle-edit" onclick="toggleEditMode()" title="Modifier directement le texte à l'écran">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            <span id="btn-edit-text">Éditer le texte</span>
           </button>
-          <button class="btn btn-primary" onclick="printActiveFrame()">
+
+          <!-- Edit Action Tools (shown when editing) -->
+          <div id="edit-actions" style="display:none; align-items:center; gap:6px;">
+            <button class="btn btn-save" onclick="saveActiveEdits()" title="Sauvegarder les modifications dans le navigateur">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              Sauvegarder
+            </button>
+            <button class="btn btn-outline" onclick="exportEditedDocHtml()" title="Télécharger le fichier HTML modifié">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Exporter HTML
+            </button>
+            <button class="btn btn-outline" onclick="resetActiveEdits()" title="Rétablir le texte d'origine">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+              Rétablir
+            </button>
+          </div>
+
+          <!-- Open Direct / Print PDF -->
+          <button class="btn btn-outline" onclick="openActivePdf()" title="Ouvrir le PDF officiel compilé">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            PDF Original
+          </button>
+          <button class="btn btn-primary" onclick="printActiveFrame()" title="Imprimer ou enregistrer en PDF avec vos modifications actuelles">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
-            Imprimer
+            Imprimer / PDF
           </button>
         </div>
       </div>
 
+      <!-- Live Edit Banner -->
+      <div id="edit-banner" class="edit-banner" style="display:none;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>✏️ <strong>Mode Édition Activé :</strong> Cliquez directement sur n'importe quel texte du document pour le modifier. Cliquez sur <strong>"Imprimer / PDF"</strong> pour exporter instantanément votre version personnalisée !</span>
+        </div>
+        <div id="edit-status-feedback" style="font-weight:700; color:#047857;"></div>
+      </div>
+
       <!-- Frame Viewer -->
       <div class="preview-viewport">
-        <iframe id="doc-frame" class="preview-frame" src="cv_servicenow_fr.html"></iframe>
+        <iframe id="doc-frame" class="preview-frame" src="cv_servicenow_fr.html" onload="onFrameLoaded()"></iframe>
       </div>
     </section>
 
@@ -550,6 +622,7 @@
     let currentDocType = 'cv'; // 'cv' or 'letter'
     let currentJobTarget = 'servicenow'; // 'servicenow' or 'generic'
     let currentLang = 'fr'; // 'fr' or 'en'
+    let isEditMode = false;
 
     const docMap = {
       'cv_servicenow_fr': { html: 'cv_servicenow_fr.html', pdf: 'Felix_Antoine_Legault_CV_ServiceNow_FR.pdf', title: 'CV Félix-Antoine Legault (Ciblé ServiceNow – Français)' },
@@ -588,6 +661,83 @@
         atsCard.style.display = 'none';
       }
     }
+
+    function onFrameLoaded() {
+      const frame = document.getElementById('doc-frame');
+      if (isEditMode) {
+        sendToFrame({ type: 'TOGGLE_EDIT', enabled: true });
+        try {
+          if (frame.contentDocument && frame.contentDocument.body) {
+            frame.contentDocument.body.contentEditable = 'true';
+            frame.contentDocument.body.classList.add('editing-enabled');
+          }
+        } catch(e) {}
+      }
+      sendToFrame({ type: 'CHECK_STATUS' });
+    }
+
+    function toggleEditMode() {
+      isEditMode = !isEditMode;
+      const btn = document.getElementById('btn-toggle-edit');
+      const text = document.getElementById('btn-edit-text');
+      const actions = document.getElementById('edit-actions');
+      const banner = document.getElementById('edit-banner');
+
+      btn.classList.toggle('active', isEditMode);
+      text.innerText = isEditMode ? 'Terminer l\'édition' : 'Éditer le texte';
+      actions.style.display = isEditMode ? 'flex' : 'none';
+      banner.style.display = isEditMode ? 'flex' : 'none';
+
+      sendToFrame({ type: 'TOGGLE_EDIT', enabled: isEditMode });
+      try {
+        const frame = document.getElementById('doc-frame');
+        if (frame.contentDocument && frame.contentDocument.body) {
+          frame.contentDocument.body.contentEditable = isEditMode ? 'true' : 'false';
+          frame.contentDocument.body.classList.toggle('editing-enabled', isEditMode);
+        }
+      } catch(e) {}
+    }
+
+    function sendToFrame(msg) {
+      const frame = document.getElementById('doc-frame');
+      if (frame && frame.contentWindow) {
+        frame.contentWindow.postMessage(msg, '*');
+      }
+    }
+
+    function saveActiveEdits() {
+      sendToFrame({ type: 'SAVE_EDITS' });
+      const feedback = document.getElementById('edit-status-feedback');
+      feedback.innerText = '✓ Modifications enregistrées localement';
+      setTimeout(() => { feedback.innerText = ''; }, 3000);
+    }
+
+    function exportEditedDocHtml() {
+      sendToFrame({ type: 'EXPORT_HTML' });
+    }
+
+    function resetActiveEdits() {
+      if (confirm('Voulez-vous réinitialiser ce document à sa version d\'origine ?')) {
+        sendToFrame({ type: 'RESET_EDITS' });
+      }
+    }
+
+    window.addEventListener('message', function(event) {
+      if (!event.data) return;
+      if (event.data.type === 'SAVED_SUCCESS') {
+        const feedback = document.getElementById('edit-status-feedback');
+        if (feedback) {
+          feedback.innerText = '✓ Sauvegardé !';
+          setTimeout(() => { feedback.innerText = ''; }, 2500);
+        }
+      } else if (event.data.type === 'CONTENT_DIRTY') {
+        const feedback = document.getElementById('edit-status-feedback');
+        if (feedback) {
+          feedback.innerText = '● Modifications non enregistrées (pensez à sauvegarder)';
+          feedback.style.color = '#d97706';
+        }
+      }
+    });
 
     function setDocType(type) {
       currentDocType = type;
