@@ -1,5 +1,5 @@
 $edgePath = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-$workingDir = "C:\Users\felix\.gemini\antigravity-ide\scratch\cv-agent-hub"
+$workingDir = $PSScriptRoot
 
 $jobs = @(
   @{ html = "cv_fr.html"; pdf = "Felix_Antoine_Legault_CV_FR.pdf" },
